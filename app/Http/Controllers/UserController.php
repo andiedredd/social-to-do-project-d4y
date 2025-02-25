@@ -6,11 +6,19 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    public function index()
+     public function index()
     {
-        //return view('users.index');
-        $users = User::query()->get();
-        return $users;
+        $items = User::all();
+        return view('users.index', [
+            'items' => $items
+        ]);
+    }
+    public function show($id)
+    {
+        $user = User::query()->where('id',$id)->first();
+        return view('users.show', [
+            'user' => $user
+        ]);
     }
 
 }

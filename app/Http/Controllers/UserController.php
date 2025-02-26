@@ -8,11 +8,12 @@ class UserController extends Controller
 {
      public function index()
     {
-        $items = User::all();
+        $users = User::all();
         return view('users.index', [
-            'items' => $items
+            'users' => $users
         ]);
     }
+
     public function show($id)
     {
         $user = User::query()->where('id',$id)->first();
@@ -21,4 +22,10 @@ class UserController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        User::query()->get();
+        return view('users.create');
+
+        }
 }

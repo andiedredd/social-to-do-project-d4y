@@ -15,6 +15,8 @@ class Post extends Model
 {
     protected $fillable = [
         'text',
-        'name'
+        'name',
+        'id',
+        'created_at'
     ];
 }

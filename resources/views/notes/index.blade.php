@@ -7,3 +7,5 @@
         </h1>
     </a>
 @endforeach
+
+<h1> <a href="/check/{{$user->id}}"> <button style="align-content: center"> Выполнить все</button> </h1>

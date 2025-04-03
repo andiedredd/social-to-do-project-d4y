@@ -24,8 +24,9 @@ class NoteController extends Controller
         $a = Note::query()->where('id', $id)->first();
         $a->checked = !$a->checked;
         $a->save();
-        return redirect('/');
+        return redirect('/note');
     }
+
 
 
 

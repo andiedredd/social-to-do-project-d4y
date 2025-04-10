@@ -19,6 +19,8 @@ Route::resource('note', \App\Http\Controllers\NoteController::class);
 
 Route::resource('blog', \App\Http\Controllers\BlogController::class);
 
+Route::get('/sign-in', 'App\Http\Controllers\UserController@login');
+
 // домашняя
 // окно с чатом
 // ту ду

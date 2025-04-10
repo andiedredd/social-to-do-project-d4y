@@ -18,11 +18,19 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
-    
+
     public function create()
     {
         User::query()->get();
         return view('users.create');
 
         }
+
+    /**
+     * страница с входом в учетную запись
+     */
+    public function login()
+    {
+        return view('login.sign_in');
+    }
 }

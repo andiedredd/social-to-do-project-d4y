@@ -7,12 +7,22 @@ use Illuminate\Http\Request;
 
 class NoteController extends Controller
 {
-    public function index()
+    protected $model = Note::class;
+
+    // todo отображать только принадлежащие текущему пользователю
+
+    public function destroy($id)
     {
-        $items = Note::query()->get();
-        return view('notes.index', [
-            'items' => $items
-        ]);
+        Note::query()->where('id', $id)->delete();
+        return redirect('/note');
+    }
+
+    public function store(Request $request)
+    {
+        $note = new Note();
+        $note->text = $request->input('text');
+        $note->save();
+        return redirect('/note');
     }
 
     /**
@@ -27,8 +37,10 @@ class NoteController extends Controller
         return redirect('/note');
     }
 
-
-
-
-
+    public function checkAll()
+    {
+        Note::query()->update(['checked' => true]);
+        return redirect('/note');
+    }
 }
+

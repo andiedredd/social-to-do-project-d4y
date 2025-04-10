@@ -6,12 +6,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/users/{id}', 'App\Http\Controllers\UserController@show');
 Route::get('/users', 'App\Http\Controllers\UserController@index');
 //Route::get('/', 'App\Http\Controllers\UserController@create');
-Route::get('/note', 'App\Http\Controllers\NoteController@index');
-Route::get('/check/{id}', 'App\Http\Controllers\NoteController@check');
 
+//Route::get('/notes', 'App\Http\Controllers\NoteController@index');
+//Route::delete('/notes/{id}', 'App\Http\Controllers\NoteController@destroy');
+//Route::post('/notes', 'App\Http\Controllers\NoteController@store');
 
+Route::prefix('note')->group(function () {
+    Route::get('/check-all', 'App\Http\Controllers\NoteController@checkAll');
+    Route::get('/check/{id}', 'App\Http\Controllers\NoteController@check');
+});
+Route::resource('note', \App\Http\Controllers\NoteController::class);
 
-
+Route::resource('blog', \App\Http\Controllers\BlogController::class);
 
 // домашняя
 // окно с чатом
@@ -19,10 +25,9 @@ Route::get('/check/{id}', 'App\Http\Controllers\NoteController@check');
 // профиль - ниже блог (публикации)
 
 
-Route::get('/', 'App\Http\Controllers\BlogController@hub'); // домашняя
+Route::get('/home', 'App\Http\Controllers\BlogController@hub'); // домашняя
 Route::get('/user/{id}', 'App\Http\Controllers\BlogController@user'); // профиль
-Route::get('/checklist/{id}', 'App\Http\Controllers\BlogController@list'); // ту ду
-Route::get('/chat/{id}', 'App\Http\Controllers\BlogController@chat'); //
+Route::get('/chat/{id}', 'App\Http\Controllers\BlogController@chat');
 
 
 

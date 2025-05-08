@@ -11,9 +11,10 @@ class UserController extends Controller
             'users' => $users
         ]);
     }
+
     public function show($id)
     {
-        $user = User::query()->where('id',$id)->first();
+        $user = User::query()->where('id', $id)->first();
         return view('users.show', [
             'user' => $user
         ]);
@@ -24,13 +25,5 @@ class UserController extends Controller
         User::query()->get();
         return view('users.create');
 
-        }
-
-    /**
-     * страница с входом в учетную запись
-     */
-    public function login()
-    {
-        return view('login.sign_in');
     }
 }

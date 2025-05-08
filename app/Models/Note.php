@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Note
  * @param int $id
+ * @param int $user_id
  * @param boolean $checked Сделано ли
  * @param string $text Текст заметки
  * @param string $created_at

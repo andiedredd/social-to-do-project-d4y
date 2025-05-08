@@ -37,10 +37,11 @@ class NoteController extends Controller
         return redirect('/note');
     }
 
-    public function checkAll()
+    public function destroyAll()
     {
-        Note::query()->update(['checked' => true]);
-        return redirect('/note');
+        $notes = Note::where('user_id', auth()->id())->get();
+        return view('notes.index', ['notes' => $notes]);
     }
 }
+
 

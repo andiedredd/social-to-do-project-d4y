@@ -1,0 +1,22 @@
+.calendar-table {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+.calendar-table td {
+    padding: 8px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+.calendar-table .today {
+    background-color: #ffc107;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.calendar-table td.saturday,
+.calendar-table td.sunday {
+    color: red;
+}

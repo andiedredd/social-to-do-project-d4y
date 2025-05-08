@@ -43,26 +43,23 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        // Создание нового пользователя
+        // новый пользователь
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password), // Хэширование пароля
         ]);
 
-        // Авторизация пользователя после регистрации
+        // авторизация после регистрации
         Auth::login($user);
-
-        // Перенаправление на домашнюю страницу после успешной регистрации и авторизации
         return redirect()->route('home');
 
-        
+
     }
 
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('login'); // Перенаправление на страницу логина после выхода
+        return redirect()->route('login');
     }
 }
-

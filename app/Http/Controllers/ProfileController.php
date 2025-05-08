@@ -10,7 +10,7 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-    // Конструктор для аутентификации
+    // конструктор для аутентификации
     public function __construct()
     {
         $this->middleware('auth');
@@ -19,20 +19,20 @@ class ProfileController extends Controller
     // Метод для обновления аватара
     public function updateAvatar(Request $request)
     {
-        // Валидация загрузки файла
+        // валидация загрузки
         $request->validate([
-            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // Максимум 2MB
+            'avatar' => 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048', // максимум 2MB
         ]);
 
         $user = Auth::user();
 
         if ($request->hasFile('avatar')) {
-            // Удаление старого аватара, если он есть
+            // удаление старого аватара
             if ($user->avatar) {
                 Storage::delete('public/' . $user->avatar);
             }
 
-            // Сохранение нового аватара
+            // сохранение нового
             $path = $request->file('avatar')->store('avatars', 'public');
             $user->avatar = $path;
             $user->save();
@@ -41,10 +41,10 @@ class ProfileController extends Controller
         return back()->with('success', 'Аватар обновлен!');
     }
 
-    // Метод для обновления статуса "Обо мне"
+    // метод для обновления статуса "Обо мне"
     public function updateInfo(Request $request)
     {
-        // Валидация текста статуса
+        // валидация статуса
         $request->validate([
             'info' => 'nullable|max:24|string',
         ]);
@@ -56,17 +56,17 @@ class ProfileController extends Controller
         return back()->with('success', 'Статус обновлен!');
     }
 
-    // Метод для смены пароля
+    // метод смены пароля
     public function updatePassword(Request $request)
     {
         // Валидация нового пароля
         $request->validate([
-            'password' => 'required|string|min:8|confirmed', // Минимум 8 символов и подтверждение
+            'password' => 'required|string|min:8|confirmed', // минимум 8 символов и подтверждение
         ]);
 
         $user = Auth::user();
 
-        // Обновление пароля
+        // обновление пароля
         $user->password = Hash::make($request->password);
         $user->save();
 

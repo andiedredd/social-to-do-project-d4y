@@ -24,24 +24,26 @@ Route::get('/home', [BlogController::class, 'home'])->name('home');
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [BlogController::class, 'home'])->name('home');
-    Route::get('/user/{id}', [BlogController::class, 'user']);
-    Route::get('/event/{id}', [BlogController::class, 'event']);
-    Route::resource('note', \App\Http\Controllers\NoteController::class);
-    Route::get('/note/check-all', 'App\Http\Controllers\NoteController@checkAll');
-    Route::get('/note/check/{id}', 'App\Http\Controllers\NoteController@check');
+    Route::get('/home', [BlogController::class, 'home'])->name('home'); // домашняя
+    Route::get('/user/{id}', [BlogController::class, 'user']); // пользователь (я)
+    Route::get('/event/{id}', [BlogController::class, 'event']); // события (переход к соо)
+
+    Route::resource('note', \App\Http\Controllers\NoteController::class); //
+
+    Route::get('/note/check-all', 'App\Http\Controllers\NoteController@checkAll'); // проверка заметок
+    Route::get('/note/check/{id}', 'App\Http\Controllers\NoteController@check'); // то же
 });
 
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout'); // выход
 
-Route::get('/tasks/{id}', [BlogController::class, 'tasks'])->name('tasks');
-Route::get('/calendar/{id}', [BlogController::class, 'tasks'])->name('calendar');
-Route::get('/projects/{id}', [BlogController::class, 'tasks'])->name('projects');
-Route::get('/chat/{id}', [BlogController::class, 'tasks'])->name('chat');
+Route::get('/tasks/{id}', [BlogController::class, 'tasks'])->name('tasks'); // задачи соо
+Route::get('/calendar/{id}', [BlogController::class, 'tasks'])->name('calendar'); // календарь соо
+Route::get('/projects/{id}', [BlogController::class, 'tasks'])->name('projects'); // проекты соо
+Route::get('/chat/{id}', [BlogController::class, 'tasks'])->name('chat'); // чат соо
 
 
 Route::middleware('auth')->group(function () {
-    Route::put('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.update.avatar');
-    Route::put('/profile/info', [ProfileController::class, 'updateInfo'])->name('profile.update.info');
-    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+    Route::put('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'updateAvatar'])->name('profile.update.avatar'); // нужен допил
+    Route::put('/profile/info', [\App\Http\Controllers\ProfileController::class, 'updateInfo'])->name('profile.update.info'); // то же
+    Route::put('/profile/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.update.password');
 });

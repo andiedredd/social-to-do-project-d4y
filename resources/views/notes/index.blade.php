@@ -5,9 +5,9 @@
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            {{-- Левая колонка: формы и индикатор --}}
+            {{-- левая колонка: формы и индикатор --}}
             <div class="col-md-5 mb-4">
-                {{-- Форма "Новая заметка" --}}
+                {{-- "Новая заметка" --}}
                 <div class="card shadow-sm rounded-4 mb-4">
                     <div class="card-body">
                         <h5 class="card-title text-center">Добавить напоминание 📝</h5>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
 
-                {{-- Форма "Выполнить все" --}}
+                {{-- "выполнить все" --}}
                 <div class="card shadow-sm rounded-4 mb-4">
                     <div class="card-body">
                         <form action="/note/check-all" method="GET">
@@ -30,7 +30,7 @@
                     </div>
                 </div>
 
-                {{-- Индикатор выполнено / всего --}}
+                {{-- индикатор выполнено / всего --}}
                 @php
                     $doneCount = $items->where('checked', true)->count();
                     $totalCount = $items->count();
@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            {{-- Правая колонка: список заметок --}}
+            {{-- правая колонка: список заметок --}}
             <div class="col-md-7">
                 <h4 class="mb-3">Список дел на сегодня 🗒</h4>
                 <div class="list-group list-group-flush overflow-auto border border-light rounded-4" style="max-height: 344px;">

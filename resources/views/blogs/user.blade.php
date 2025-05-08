@@ -7,7 +7,7 @@
         <div class="card shadow-sm rounded-4 p-4">
             <h2 class="text-center mb-4">Мой профиль 👤</h2>
 
-            {{-- Аватар и кнопка смены --}}
+            {{-- фотка и кнопка смены --}}
             <div class="text-center mb-4">
                 <img src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('default-avatar.png') }}"
                      class="rounded-circle mb-3" alt="Аватар" style="width: 150px; height: 150px; object-fit: cover;">
@@ -22,7 +22,7 @@
                 </form>
             </div>
 
-            {{-- Статус "Обо мне" --}}
+            {{-- статус "обо мне" --}}
             <form action="{{ route('profile.update.info') }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -34,12 +34,12 @@
                 <button class="btn btn-secondary btn-sm mb-4">Обновить статус</button>
             </form>
 
-            {{-- Основная информация --}}
+            {{-- основная информация --}}
             <p><strong>Дата рождения:</strong> {{ auth()->user()->birthday }}</p>
             <p><strong>Имя пользователя:</strong> {{ auth()->user()->name }}</p>
             <p><strong>Логин:</strong> {{ auth()->user()->email }}</p>
 
-            {{-- Смена пароля --}}
+            {{-- смена пароля --}}
             <form action="{{ route('profile.update.password') }}" method="POST" class="mt-4">
                 @csrf
                 @method('PUT')

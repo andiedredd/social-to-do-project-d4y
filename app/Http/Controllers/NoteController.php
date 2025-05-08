@@ -9,7 +9,7 @@ class NoteController extends Controller
 {
     protected $model = Note::class;
 
-    // todo отображать только принадлежащие текущему пользователю
+    // to-do отображать только принадлежащие текущему пользователю
 
     public function destroy($id)
     {
@@ -26,7 +26,7 @@ class NoteController extends Controller
     }
 
     /**
-     * Меняет значение checked на противоположное
+     * меняет значение checked на противоположное
      * и редиректит на / (корневую ссылку)
      */
     public function check($id)

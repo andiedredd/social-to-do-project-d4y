@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <script src="{{ asset('js/calendar.js') }}"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+@php use Illuminate\Support\Str; @endphp
+
 <body style="background-color: #edf2f7;">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
     <div class="container-fluid">
@@ -17,7 +21,7 @@
             <ul class="navbar-nav me-auto">
                 <li><a class="nav-link" href="{{ url('/user/' . auth()->id()) }}">Профиль</a></li>
                 <li><a class="nav-link" href="{{ route('note.index') }}">Мои проекты</a></li>
-                <li><a class="nav-link" href="{{ url('/event/' . auth()->id()) }}">События и чаты</a></li>
+                <li><a class="nav-link" href="{{ route('events.index') }}">События</a></li>
             </ul>
             <form>
                 <p> 30 апр. 19:18 </p>

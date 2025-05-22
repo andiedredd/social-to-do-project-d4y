@@ -14,9 +14,20 @@ use Illuminate\Database\Eloquent\Model;
  * @param string $updated_at
  */
 class Note extends Model
+
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     protected $fillable = [
         'text',
-        'checked'
+        'checked',
+        'user_id'
     ];
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
 }

@@ -45,23 +45,24 @@
 
             {{-- правая колонка: список заметок --}}
             <div class="col-md-7">
-                <h4 class="mb-3">Список дел на сегодня 🗒</h4>
+                <h4 class="mb-3">Основной список дел 🗒</h4>
                 <div class="list-group list-group-flush overflow-auto border border-light rounded-4" style="max-height: 344px;">
-                    @foreach ($items as $user)
+                    @forelse ($items as $user)
                         <div class="d-flex justify-content-between align-items-center list-group-item">
-                            <a href="/note/check/{{$user->id}}" class="flex-grow-1" style="
-    color: {{ $user->checked ? 'grey' : 'black' }};
-    {{ $user->checked ? 'text-decoration: line-through;' : 'text-decoration: none;' }}">
+                            <a href="/note/check/{{$user->id}}" class="flex-grow-1"
+                               style="color: {{ $user->checked ? 'grey' : 'black' }};
+                      {{ $user->checked ? 'text-decoration: line-through;' : 'text-decoration: none;' }}">
                                 {{ $user->text }}
                             </a>
-
                             <form action="/note/{{$user->id}}" method="post" class="mb-0 ms-3">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">⌫</button>
                             </form>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="list-group-item text-center text-muted">Придумаем что-то новое? Или самое время взять паузу.. 🧐</div>
+                    @endforelse
                 </div>
             </div>
         </div>

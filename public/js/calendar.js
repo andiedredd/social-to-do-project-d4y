@@ -2,70 +2,80 @@ document.addEventListener('DOMContentLoaded', function () {
     const today = new Date();
 
     for (let i = 0; i < 3; i++) {
-        const date = new Date(today.getFullYear(), today.getMonth() + i, 1);
-        renderCalendar(date, `calendar-${i}`);
-    }
-
-    function renderCalendar(date, elementId) {
-        const container = document.getElementById(elementId);
-        container.innerHTML = '';
-
-        const year = date.getFullYear();
-        const month = date.getMonth();
-        const monthName = date.toLocaleString('default', { month: 'long' });
-
-        const firstDay = new Date(year, month, 1).getDay();
-        const lastDate = new Date(year, month + 1, 0).getDate();
-
-        const title = document.createElement('h5');
-        title.className = 'text-capitalize mb-2';
-        title.innerText = `${monthName} ${year}`;
-        container.appendChild(title);
-
-        const table = document.createElement('table');
-        table.className = 'calendar-table table table-bordered';
-
-        const thead = document.createElement('thead');
-        thead.innerHTML = `<tr>
-            <th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th>
-        </tr>`;
-        table.appendChild(thead);
-
-        const tbody = document.createElement('tbody');
-        let row = document.createElement('tr');
-
-        let dayOffset = (firstDay + 6) % 7; // Понедельник — первый день
-        for (let i = 0; i < dayOffset; i++) {
-            row.appendChild(document.createElement('td'));
+        const target = document.getElementById(`calendar-${i}`);
+        if (target) {
+            const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+            renderCalendar(target, monthDate);
         }
-
-        for (let day = 1; day <= lastDate; day++) {
-            const td = document.createElement('td');
-            td.innerText = day;
-
-            const currentDate = new Date(year, month, day);
-            const weekday = currentDate.getDay(); // 0 - воскресенье, 6 - суббота
-
-            if (weekday === 0) td.classList.add('sunday');
-            if (weekday === 6) td.classList.add('saturday');
-
-            const isToday =
-                day === today.getDate() &&
-                month === today.getMonth() &&
-                year === today.getFullYear();
-
-            if (isToday) td.classList.add('today');
-
-            row.appendChild(td);
-
-            if ((day + dayOffset) % 7 === 0) {
-                tbody.appendChild(row);
-                row = document.createElement('tr');
-            }
-        }
-
-        if (row.children.length > 0) tbody.appendChild(row);
-        table.appendChild(tbody);
-        container.appendChild(table);
     }
 });
+
+function renderCalendar(container, date) {
+    container.innerHTML = '';
+
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    // Формируем заголовок "Месяц Год" без "г."
+    const monthName = date.toLocaleString('ru-RU', { month: 'long' });
+    const title = document.createElement('h5');
+    title.className = 'text-center mb-2 text-capitalize';
+    title.textContent = `${monthName} ${year}`; // без "г."
+    container.appendChild(title);
+
+    // Сетка дней недели
+    const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+    const daysRow = document.createElement('div');
+    daysRow.className = 'd-flex flex-wrap text-center fw-bold';
+    daysOfWeek.forEach(day => {
+        const cell = document.createElement('div');
+        cell.className = 'calendar-cell small text-muted';
+        cell.textContent = day;
+        daysRow.appendChild(cell);
+    });
+    container.appendChild(daysRow);
+
+    // Первый день недели (понедельник=0 для нашей логики)
+    const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const grid = document.createElement('div');
+    grid.className = 'd-flex flex-wrap';
+
+    // Пустые ячейки перед первым днём месяца
+    for (let i = 0; i < firstDay; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'calendar-cell';
+        grid.appendChild(empty);
+    }
+
+    // Дни месяца
+    for (let day = 1; day <= daysInMonth; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'calendar-cell calendar-day text-center p-1';
+        cell.textContent = day;
+
+        // Красим выходные (сб=5, вс=6, если понедельник=0)
+        const dayOfWeek = (new Date(year, month, day).getDay() + 6) % 7;
+        if (dayOfWeek >= 5) {
+            cell.style.color = 'red';
+        }
+
+        // Белый фон ячеек (можно добавить сюда, если не сделаешь в CSS)
+        cell.style.backgroundColor = '#ffffff';
+
+        // Дата в ISO для модалки
+        const isoDate = new Date(year, month, day).toISOString().split('T')[0];
+        cell.dataset.date = isoDate;
+
+        cell.addEventListener('click', () => {
+            document.getElementById('note-date').value = isoDate;
+            const modal = new bootstrap.Modal(document.getElementById('noteModal'));
+            modal.show();
+        });
+
+        grid.appendChild(cell);
+    }
+
+    container.appendChild(grid);
+}

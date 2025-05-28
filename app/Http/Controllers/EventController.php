@@ -124,12 +124,18 @@ class EventController extends Controller
         return redirect()->route('blogs.event')->with('success', 'Событие обновлено');
     }
 
-    public function destroy(Event $event)
+    public function destroy($id)
     {
-        $this->authorizeEvent($event);
+        $event = Event::findOrFail($id);
+
+        // Проверка: только создатель может удалить
+        if ($event->user_id !== auth()->id()) {
+            abort(403, 'Вы не являетесь создателем этого события.');
+        }
+
         $event->delete();
 
-        return redirect()->route('blogs.event')->with('success', 'Событие удалено');
+        return redirect()->route('events.index')->with('success', 'Группа успешно удалена.');
     }
 
     protected function authorizeEvent(Event $event)

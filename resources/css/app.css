@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.card.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.navbar.dark-mode,
+.footer.dark-mode {
+    background-color: #1a1a1a;
+}
+.btn-outline-white-black {
+    border: 1px solid white !important;
+    color: black !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-white-black:hover,
+.btn-outline-white-black:focus {
+    background-color: white !important;
+    color: black !important;
+    text-decoration: none;
+}
+

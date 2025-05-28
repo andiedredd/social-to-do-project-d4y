@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Note;
 use Illuminate\Http\Request;
+use App\Models\CalendarNote;
+
 
 class NoteController extends Controller
 {
@@ -53,17 +55,21 @@ class NoteController extends Controller
 
     public function destroyAll()
     {
-        $notes = Note::where('user_id', auth()->id())->get();
-        return view('notes.index', ['notes' => $notes]);
+        Note::where('user_id', auth()->id())->delete(); // Удаляем все заметки текущего пользователя
+
+        return redirect('/note')->with('success', 'Список очищен!');
     }
+
 
     public function index()
     {
         $notes = Note::where('user_id', auth()->id())->get();
+        $calendarNotes = CalendarNote::all(); // 👈 добавляем
 
-        return view('notes.index', ['items' => $notes]);
-
+        return view('notes.index', [
+            'items' => $notes,
+            'calendarNotes' => $calendarNotes // 👈 передаём
+        ]);
     }
+
 }
-
-

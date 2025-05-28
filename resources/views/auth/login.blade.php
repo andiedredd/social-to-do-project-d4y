@@ -8,16 +8,9 @@
     <title>Login</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-    <style>
-
-        .btn-custom {
-            background-color: #dc3545;
-            color: white;
-        }
-    </style>
 </head>
 
-<body class="text-center" style="background-color: #edf2f7;">
+<body class="text-center" style="background-color: #fff0f5;">
 
 
 <div class="d-flex justify-content-center align-items-center vh-100">

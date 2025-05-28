@@ -55,7 +55,7 @@ class NoteController extends Controller
 
     public function destroyAll()
     {
-        Note::where('user_id', auth()->id())->delete(); // Удаляем все заметки текущего пользователя
+        Note::where('user_id', auth()->id())->delete(); // удаляем все заметки пользователя
 
         return redirect('/note')->with('success', 'Список очищен!');
     }
@@ -64,11 +64,11 @@ class NoteController extends Controller
     public function index()
     {
         $notes = Note::where('user_id', auth()->id())->get();
-        $calendarNotes = CalendarNote::all(); // 👈 добавляем
+        $calendarNotes = CalendarNote::all(); // добавляем
 
         return view('notes.index', [
             'items' => $notes,
-            'calendarNotes' => $calendarNotes // 👈 передаём
+            'calendarNotes' => $calendarNotes // передаём
         ]);
     }
 

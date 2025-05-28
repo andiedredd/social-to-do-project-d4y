@@ -58,8 +58,8 @@
                                 </form>
                             </div>
                         </div>
-                    </div> <!-- row -->
-                </div> <!-- card -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -55,7 +55,7 @@
             text-decoration: none;
         }
 
-        /* Кнопка выхода */
+        /* кнопка выхода */
         .btn-outline-light {
             font-weight: 600;
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -16,14 +16,14 @@ function renderCalendar(container, date) {
     const year = date.getFullYear();
     const month = date.getMonth();
 
-    // Формируем заголовок "Месяц Год" без "г."
+    // "Месяц Год"
     const monthName = date.toLocaleString('ru-RU', { month: 'long' });
     const title = document.createElement('h5');
     title.className = 'text-center mb-2 text-capitalize';
-    title.textContent = `${monthName} ${year}`; // без "г."
+    title.textContent = `${monthName} ${year}`;
     container.appendChild(title);
 
-    // Сетка дней недели
+    // сетка дней недели
     const daysOfWeek = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
     const daysRow = document.createElement('div');
     daysRow.className = 'd-flex flex-wrap text-center fw-bold';
@@ -35,14 +35,14 @@ function renderCalendar(container, date) {
     });
     container.appendChild(daysRow);
 
-    // Первый день недели (понедельник=0 для нашей логики)
+    // первый день недели (понедельник = 0 для логики)
     const firstDay = (new Date(year, month, 1).getDay() + 6) % 7;
     const daysInMonth = new Date(year, month + 1, 0).getDate();
 
     const grid = document.createElement('div');
     grid.className = 'd-flex flex-wrap';
 
-    // Пустые ячейки перед первым днём месяца
+    // пустые ячейки перед первым днём месяца
     for (let i = 0; i < firstDay; i++) {
         const empty = document.createElement('div');
         empty.className = 'calendar-cell';
@@ -61,10 +61,10 @@ function renderCalendar(container, date) {
             cell.style.color = 'red';
         }
 
-        // Белый фон ячеек (можно добавить сюда, если не сделаешь в CSS)
+        // белый фон ячеек
         cell.style.backgroundColor = '#ffffff';
 
-        // Дата в ISO для модалки
+        // дата в ISO для модалки
         const isoDate = new Date(year, month, day).toISOString().split('T')[0];
         cell.dataset.date = isoDate;
 

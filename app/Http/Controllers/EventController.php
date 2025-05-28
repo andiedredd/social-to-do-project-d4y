@@ -128,7 +128,7 @@ class EventController extends Controller
     {
         $event = Event::findOrFail($id);
 
-        // Проверка: только создатель может удалить
+        // проверка: только создатель может удалить
         if ($event->user_id !== auth()->id()) {
             abort(403, 'Вы не являетесь создателем этого события.');
         }

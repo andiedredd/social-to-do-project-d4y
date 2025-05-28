@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            {{-- Правая колонка: Только смена пароля --}}
+            {{-- Правая колонка: смена пароля --}}
             <div class="col-lg-5">
                 <div class="card shadow rounded-4 h-100">
                     <div class="card-body py-5 px-4">

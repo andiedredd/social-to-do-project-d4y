@@ -23,9 +23,9 @@ class RehashPasswords extends Command
         $users = User::all();
 
         foreach ($users as $user) {
-            // Проверяем, если пароль не хэширован с использованием bcrypt
+            // проверяем, если пароль не хэширован с использованием bcrypt
             if (!Hash::check($user->password, $user->password)) {
-                // Обновляем пароль, хэшируя его с помощью bcrypt
+                // обновляем пароль, хэшируя его с помощью bcrypt
                 $user->password = Hash::make($user->password);
                 $user->save();
                 $this->info("Пароль для пользователя {$user->email} был перехэширован.");

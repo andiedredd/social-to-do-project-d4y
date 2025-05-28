@@ -29,7 +29,7 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            return redirect()->route('home'); // Перенаправление на домашнюю страницу после успешного входа
+            return redirect()->route('home'); // перенаправление на домашнюю страницу после входа
         }
 
         return back()->withErrors(['email' => 'Неверный email или пароль']);
@@ -47,7 +47,7 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password), // Хэширование пароля
+            'password' => Hash::make($request->password), // хэширование
         ]);
 
         // авторизация после регистрации

@@ -10,8 +10,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalendarNoteController;
 
 
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register'); // Показ формы регистрации
-Route::post('/register', [AuthController::class, 'register'])->name('register.post'); // Обработка формы регистрации
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register'); // показ формы регистрации
+Route::post('/register', [AuthController::class, 'register'])->name('register.post'); // обработка формы регистрации
 
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/note/check-all', [NoteController::class, 'destroyAll'])->name('note.destroyAll');
     Route::get('/note/check/{id}', 'App\Http\Controllers\NoteController@check'); // то же
 
-//    Route::get('/users/{id}', 'App\Http\Controllers\UserController@show');
+//    Route::get('/users/{id}', 'App\Http\Controllers\UserController@show'); ??
 //    Route::get('/users/{id}', 'App\Http\Controllers\UserController@index');
 
     Route::resource('blog', \App\Http\Controllers\BlogController::class);

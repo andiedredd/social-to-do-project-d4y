@@ -34,7 +34,7 @@ class BlogController extends Controller
         return view('blogs.event', ['blog' => $blog]);
     }
 
-    // ----> ниже все по ивенту
+    // ниже все по ивенту
 
     public function calendar($id)
     {

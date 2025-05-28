@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    // Конструктор: здесь вызывается middleware
+    // конструктор тк здесь вызывается middleware
     public function __construct()
     {
         $this->middleware('auth');
     }
 
-    // Метод отображения страницы профиля
+    // метод отображения профиля
     public function show()
     {
         $user = Auth::user();

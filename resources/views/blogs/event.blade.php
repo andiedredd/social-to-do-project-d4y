@@ -146,7 +146,7 @@
     </div>
 
     <style>
-        /* Плавный ховер с тенью для карточек */
+        /* плавный ховер с тенью для карточек */
         .card:hover {
             box-shadow:
                 0 4px 12px rgba(0, 0, 0, 0.12),
@@ -155,22 +155,22 @@
             transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
 
-        /* Плавный ховер для кнопок */
+        /* плавный ховер для кнопок */
         .btn-outline-secondary:hover,
         .btn-outline-danger:hover {
-            background-color: #6c757d; /* чуть темнее серого */
+            background-color: #6c757d;
             color: white !important;
             box-shadow:
                 0 4px 10px rgba(0,0,0,0.15);
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Мягкий переход для кнопок */
+        /* переход для кнопок */
         .btn {
             transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        /* Более округлённые кнопки */
+        /* округлённые кнопки */
         .btn-rounded {
             border-radius: 50px !important;
         }

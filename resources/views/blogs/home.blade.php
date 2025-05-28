@@ -58,7 +58,7 @@
                 </div>
 
     <style>
-        /* Розовые градиенты для карточек */
+        /* розовые градиенты для карточек */
         .card-pink-gradient {
             background: linear-gradient(135deg, #f3adc5 0%, #ecbfbf 100%);
         }
@@ -66,24 +66,24 @@
             background: linear-gradient(135deg, #fff0f6 0%, #ffd6e8 100%);
         }
 
-        /* Иконки розовые */
+        /* иконки тож розовые */
         .icon-pink {
             color: #c84f78;
         }
 
-        /* Текст в розовых тонах для лучшей читаемости */
+        /* текст в розовых тонах для читаемости */
         .text-pink-muted {
             color: #2d1923;
         }
 
-        /* Hover эффект */
+        /* эффект */
         .card:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(248, 0, 0, 0.35);
             cursor: default;
         }
 
-        /* Адаптивные отступы */
+        /* адаптивные отступы */
         @media (max-width: 768px) {
             .card-body {
                 padding-left: 2rem !important;
